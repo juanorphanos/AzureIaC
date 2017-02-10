@@ -1,11 +1,64 @@
 ﻿{
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
+  "parameters": {
+    "vnetName": {
+      "type": "string",
+      "defaultValue": "IaC_Test_VirtualNetwork",
+      "metadata": {
+        "description": "VNet Name"
+      }
     },
-    "variables": {
-    },
+
+    "vnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/16",
+      "metadata": {
+        "description": "VNet CIDR Prefix"
+      }
+    }
+  },
+
+  "variables": {
+    "IaC_Test_NetworkName": "[parameters('vnetName')]",
+    "IaC_Test_NetworkPrefix": "[parameters('vnetPrefix')]",
+    "IaC_Test_NetworkSubnet1Name": "Subnet-1",
+    "IaC_Test_NetworkSubnet1Prefix": "10.0.0.0/24",
+    "IaC_Test_NetworkSubnet2Name": "Subnet-2",
+    "IaC_Test_NetworkSubnet2Prefix": "10.0.1.0/24"
+  },
     "resources": [
+        {
+            "name": "IaC_Test_Network",
+            "type": "Microsoft.Network/virtualNetworks",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [ ],
+            "tags": {
+                "displayName": "IaC_Test_Network"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('IaC_Test_NetworkPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('IaC_Test_NetworkSubnet1Name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('IaC_Test_NetworkSubnet1Prefix')]"
+                        }
+                    },
+                    {
+                        "name": "[variables('IaC_Test_NetworkSubnet2Name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('IaC_Test_NetworkSubnet2Prefix')]"
+                        }
+                    }
+                ]
+            }
+        }
     ],
     "outputs": {
     }
