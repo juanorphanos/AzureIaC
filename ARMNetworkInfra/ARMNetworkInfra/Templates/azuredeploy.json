@@ -29,7 +29,7 @@
   },
     "resources": [
         {
-            "name": "IaC_Test_Network",
+            "name": "[variables('IaC_Test_NetworkName')]",
             "type": "Microsoft.Network/virtualNetworks",
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-06-15",
