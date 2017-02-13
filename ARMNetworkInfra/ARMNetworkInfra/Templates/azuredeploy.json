@@ -16,16 +16,48 @@
       "metadata": {
         "description": "VNet CIDR Prefix"
       }
+    },
+
+    "vnetSubnet1Name": {
+      "type": "string",
+      "defaultValue": "IaC_Test_VirtualNetwork-Subnet-1",
+      "metadata": {
+        "description": "First Subnet Name"
+      }
+    },
+
+    "vnetSubnet1Prefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata": {
+        "description": "CIDR Prefix of the first subnet"
+      }
+    },
+
+
+    "vnetSubnet2Name": {
+      "type": "string",
+      "defaultValue": "IaC_Test_VirtualNetwork-Subnet-2",
+      "metadata": {
+        "description": "Subnet Subnet Name"
+      }
+    },
+    "vnetSubnet2Prefix": {
+      "type": "string",
+      "defaultValue": "10.0.1.0/24",
+      "metadata": {
+        "description": "CIDR Prefix of the second subnet"
+      }
     }
   },
 
   "variables": {
     "IaC_Test_NetworkName": "[parameters('vnetName')]",
     "IaC_Test_NetworkPrefix": "[parameters('vnetPrefix')]",
-    "IaC_Test_NetworkSubnet1Name": "Subnet-1",
-    "IaC_Test_NetworkSubnet1Prefix": "10.0.0.0/24",
-    "IaC_Test_NetworkSubnet2Name": "Subnet-2",
-    "IaC_Test_NetworkSubnet2Prefix": "10.0.1.0/24"
+    "IaC_Test_NetworkSubnet1Name": "[parameters('vnetSubnet1Name')]",
+    "IaC_Test_NetworkSubnet1Prefix": "[parameters('vnetSubnet1Prefix')]",
+    "IaC_Test_NetworkSubnet2Name": "[parameters('vnetSubnet2Name')]",
+    "IaC_Test_NetworkSubnet2Prefix": "[parameters('vnetSubnet2Prefix')]"
   },
     "resources": [
         {
