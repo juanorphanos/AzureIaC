@@ -18,6 +18,13 @@
       }
     },
 
+    "vnetDescription": {
+      "type": "string",
+      "defaultValue": "Test Virtual Network",
+      "metadata": {
+        "description": "Virtual nework description"
+      }
+    },
     "vnetSubnet1Name": {
       "type": "string",
       "defaultValue": "IaC_Test_VirtualNetwork-Subnet-1",
@@ -53,6 +60,7 @@
 
   "variables": {
     "IaC_Test_NetworkName": "[parameters('vnetName')]",
+    "IaC_Test_NetworkDescription": "[parameters('vnetDescription')]",
     "IaC_Test_NetworkPrefix": "[parameters('vnetPrefix')]",
     "IaC_Test_NetworkSubnet1Name": "[parameters('vnetSubnet1Name')]",
     "IaC_Test_NetworkSubnet1Prefix": "[parameters('vnetSubnet1Prefix')]",
@@ -66,9 +74,9 @@
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-06-15",
             "dependsOn": [ ],
-            "tags": {
-                "displayName": "IaC_Test_Network"
-            },
+          "tags": {
+            "displayName": "[variables('IaC_Test_NetworkDescription')]"
+          },
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
